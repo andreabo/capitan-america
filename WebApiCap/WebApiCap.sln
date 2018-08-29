@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiCap", "WebApiCap\WebApiCap.csproj", "{0169D50C-CFFE-40D6-B184-EA42A5FAF9C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0169D50C-CFFE-40D6-B184-EA42A5FAF9C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0169D50C-CFFE-40D6-B184-EA42A5FAF9C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0169D50C-CFFE-40D6-B184-EA42A5FAF9C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0169D50C-CFFE-40D6-B184-EA42A5FAF9C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {360F6B58-3A98-4DD1-AFE5-6A31132E4857}
+	EndGlobalSection
+EndGlobal
