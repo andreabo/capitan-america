@@ -1,0 +1,119 @@
+body {
+    background-image: url("imgs/body.jpg");
+    /*background-size: 1600px;*/
+}
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+a:active {
+    text-decoration: underline;
+    color: black;
+}
+
+h1{
+    text-shadow: -1px 2px black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.page-container {
+    width: 29%;
+    height: 39%;
+    margin: auto;
+    position: absolute;
+    top: -24px;
+    left: 20%;
+    bottom: 0;
+    right: 0;
+
+    font-family: sans-serif;
+    color: white;
+
+}
+
+.category-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.category-list__item {
+    margin: 10px;
+    background-color: lightgray;
+    border-radius: 5px;
+    border-width: 3px;
+    text-align: center;
+    width: 150px;
+    -webkit-box-shadow: 3px 4px 5px 0px rgba(148, 148, 148, 1);
+    -moz-box-shadow: 3px 4px 5px 0px rgba(148, 148, 148, 1);
+    box-shadow: 3px 4px 5px 0px rgba(148, 148, 148, 1);
+}
+
+.buttons-grp {
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 75px;
+}
+
+.button {
+    background-color: aliceblue;
+    -webkit-box-shadow: 3px 4px 5px 0px rgba(148, 148, 148, 1);
+    -moz-box-shadow: 3px 4px 5px 0px rgba(148, 148, 148, 1);
+    box-shadow: 3px 4px 5px 0px rgba(148, 148, 148, 1);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.item-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.item-list__item {
+    margin: 10px;
+    background-color: lightgray;
+    border-radius: 5px;
+    border-width: 3px;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    -webkit-box-shadow: 3px 4px 5px 0px rgba(148, 148, 148, 1);
+    -moz-box-shadow: 3px 4px 5px 0px rgba(148, 148, 148, 1);
+    box-shadow: 3px 4px 5px 0px rgba(148, 148, 148, 1);
+}
+
+.item-list__item__delete-button {
+    background-color: indianred;
+    border-radius: 5px;
+}
+
+.add-item-form {
+
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    padding-bottom: 25px;
+    border-radius: 5px;
+}
+
+.submit {
+    padding: 5px !important;
+}
+
+.input {
+    border-radius: 5px;
+    padding: 5px !important;
+}
