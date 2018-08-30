@@ -55,7 +55,7 @@ namespace WebApiCap.Controllers
                 Context.Entry(Mision).State = EntityState.Modified;
                 Context.SaveChanges();
 
-                return Ok();
+                return new CreatedAtRouteResult("MisionCreada", new { id = Mision.Id }, Mision);
             }
             return BadRequest(ModelState);
         }

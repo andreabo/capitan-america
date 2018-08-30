@@ -56,6 +56,19 @@ namespace WebApiCap
                     );
                 Context.SaveChanges();
             }
+
+            if (!Context.RegistroUsersCap.Any())
+            {
+                Context.RegistroUsersCap.AddRange(
+                    new List<RegistroUsersCap>()
+                    {
+                        new RegistroUsersCap(){ Nombre = "Tonny Stark", Tpersona = "patrocinador"},
+                        new RegistroUsersCap(){ Nombre = "Rick Jones", Tpersona = "personas salvadas"},
+                        new RegistroUsersCap(){ Nombre = "Barón Zemo", Tpersona = "enemigos" }
+                    }
+                    );
+                Context.SaveChanges();
+            }
         }
     }
 }
