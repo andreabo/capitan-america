@@ -1,10 +1,12 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import {api} from '../api'
 
-class ListItem extends Component {
+import './styles.css'
+
+class ListMissions extends Component {
     constructor(props) {
         super(props);
         this.state = {data: []};
@@ -13,10 +15,8 @@ class ListItem extends Component {
     componentDidMount() {
         const that = this;
         // axios.get(`${api.url}${this.props.match.params.list}`, {
-        console.log(`${api.url}RegistroUsuarios`);
-        axios.get(`
-        ${api.url}
-        RegistroUsuarios`, {})
+        console.log(`${api.url}`);
+        axios.get(`${api.url}`, {})
             .then(function (response) {
                 console.log(response);
                 that.setState({data: response.data});
@@ -27,9 +27,9 @@ class ListItem extends Component {
     }
 
     confirmDelete = (id) => {
-        if (window.confirm('Are you sure you wish to delete this item?')) {
+        if (window.confirm('Are you sure you wish to delete this mission?')) {
             console.log('PANCHO', id);
-            axios.delete(`${api.url}${this.props.match.params.list} / ${id}`, {})
+            axios.delete(`${api.url}${id}`, {})
                 .then(function (response) {
                     console.log(response);
                     window.location.reload();
@@ -40,10 +40,13 @@ class ListItem extends Component {
         }
     };
 
-    render() {
+ render() {
         const listItems = this.state.data.map((item) =>
             <li className='item-list__item' key={item.id.toString()}>
                 {item.name}
+                <div>
+                    {(item.fechaHora)}
+                </div>
                 <button className='item-list__item__delete-button' onClick={(id) => this.confirmDelete(item.id)}>
                     Delete
                 </button>
@@ -53,7 +56,7 @@ class ListItem extends Component {
         return (
             <div className='page-container'>
                 <h1>
-                    Listing all {this.props.match.params.list}
+                    Listing all Misions
                 </h1>
                 <div className='buttons-grp'>
                     <div className='button'>
@@ -72,4 +75,4 @@ class ListItem extends Component {
     }
 }
 
-export default ListItem;
+export default ListMissions;

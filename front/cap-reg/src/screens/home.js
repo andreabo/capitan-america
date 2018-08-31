@@ -27,6 +27,9 @@ class Home extends Component {
          <li className='category-list__item'>
            <Link to={`/list/enemies`}>See enemies</Link>
          </li>
+         <li className='category-list__item'>
+           <Link to={`/mlist`}>See missions</Link>
+         </li>
        </ul>
      </div>
     );
