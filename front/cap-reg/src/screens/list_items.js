@@ -12,13 +12,9 @@ class ListItem extends Component {
 
     componentDidMount() {
         const that = this;
-        // axios.get(`${api.url}${this.props.match.params.list}`, {
-        console.log(`${api.url}` + `RegistroUsuarios`);
-        axios.get(`
-        ${api.url}
-        RegistroUsuarios`, {})
+        axios.get(`${api.url}${this.props.match.params.list}`, {})
             .then(function (response) {
-                console.log(response);
+                console.log(response.data);
                 that.setState({data: response.data});
             })
             .catch(function (error) {
@@ -26,10 +22,10 @@ class ListItem extends Component {
             })
     }
 
-    confirmDelete = (id) => {
+    confirmDelete = (Id) => {
         if (window.confirm('Are you sure you wish to delete this item?')) {
-            console.log('PANCHO', id);
-            axios.delete(`${api.url}${this.props.match.params.list} / ${id}`, {})
+            console.log('PANCHO', Id);
+            axios.delete(`${api.url}${this.props.match.params.list}/${Id}`, {})
                 .then(function (response) {
                     console.log(response);
                     window.location.reload();
@@ -60,21 +56,15 @@ class ListItem extends Component {
                         <Link to={'/'}>Back Home</Link>
                     </div>
                     <div className='button'>
-                        <Link to={` / new /${this.props.match.params.list}`}>Add {this.props.match.params.list}</
-                            Link>
-                        <
-                        /div>
+                        <Link to={`/new/${this.props.match.params.list}`}>Add {this.props.match.params.list}</Link>
                     </div>
-                    <
-                        ul
-                        className='item-list'>
-                        {listItems}
-                    </ul>
-                    <
-                    /div>
-                    )
-                    ;
-                    }
-                    }
+                </div>
+                <ul className='item-list'>
+                    {listItems}
+                </ul>
+            </div>
+        );
+    }
+}
 
-                    export default ListItem;
+export default ListItem;
