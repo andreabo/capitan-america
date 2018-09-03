@@ -1,0 +1,20 @@
+.logo {
+  width: 200px;
+  height: 200px;
+}
+
+#sideNav {
+  background: url('./body.jpg') #0471b8;
+  background-blend-mode: multiply;
+  background-position-x: -306px;
+  background-position-y: -313px;
+}
+
+#sideNav .nav-link {
+  color:#caddff;
+  cursor: pointer;
+}
+
+#sideNav .nav-link:hover {
+  color: #ffffff;
+}
