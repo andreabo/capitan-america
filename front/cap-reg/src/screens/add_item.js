@@ -22,20 +22,36 @@ class AddItem extends Component {
   };
 
   getAjaxConfig = () => {
+    const item = this.props.match.params.item;
     if (this.isMissionScreen()) {
       return {
-        url: `${api.url}${this.props.match.params.item}`,
+        url: `${api.url}${item}`,
         params: {
           name: this.state.value,
           fechaHora: new Date(this.state.date).toISOString()
         }
       }
     }
+
+    let user = 0;
+    switch (item) {
+      case 'sponsors':
+        user = 1; break;
+      case 'allies':
+        user = 2; break;
+      case 'teammates':
+        user = 3; break;
+      case 'saves':
+        user = 4; break;
+      case 'enemies':
+        user = 5; break;
+    }
+
     return {
-      url: `${api.url}tusuario`,
+      url: `${api.url}RegistroUsuarios`,
       params: {
         name: this.state.value,
-        tusuario: `${this.props.match.params.item}`,
+        tpersona: user,
       }
     };
   }
