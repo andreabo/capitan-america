@@ -23,9 +23,20 @@ namespace WebApiCap
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("CapDB"));
+            services.AddCors(options => {
+                options.AddPolicy("AllowMyOrigin", 
+                    builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()
+                    );
+            });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("CapDB"));
+            
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(ConfigureJson);
+        }
+
+        private void ConfigureJson(MvcJsonOptions obj)
+        {
+            obj.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +51,7 @@ namespace WebApiCap
                 app.UseHsts();
             }
 
+            app.UseCors("AllowMyOrigin");
             app.UseHttpsRedirection();
             app.UseMvc();
 
@@ -57,30 +69,53 @@ namespace WebApiCap
                 Context.SaveChanges();
             }
 
-            if (!Context.RegistroUsersCap.Any())
-            {
-                Context.RegistroUsersCap.AddRange(
-                    new List<RegistroUsersCap>()
-                    {
-                        new RegistroUsersCap(){ Name = "Tonny Stark", Tpersona = "teammates"},
-                        new RegistroUsersCap(){ Name = "Rick Jones", Tpersona = "saves"},
-                        new RegistroUsersCap(){ Name = "Barón Zemo", Tpersona = "enemies" }
-                    }
-                    );
-                Context.SaveChanges();
-            }
+            //if (!Context.RegistroUsersCap.Any())
+            //{
+            //    Context.RegistroUsersCap.AddRange(
+            //        new List<RegistroUsersCap>()
+            //        {
+            //            new RegistroUsersCap(){ Name = "Tonny Stark", Tpersona = "teammates"},
+            //            new RegistroUsersCap(){ Name = "Rick Jones", Tpersona = "saves"},
+            //            new RegistroUsersCap(){ Name = "Barón Zemo", Tpersona = "enemies" }
+            //        }
+            //        );
+            //    Context.SaveChanges();
+            //}
 
             if (!Context.tUsuario.Any())
             {
                 Context.tUsuario.AddRange(
                     new List<tUsuario>()
                     {
-                        new tUsuario(){ Name = "sponsors"},
+                        new tUsuario(){ Name = "sponsors",
+                            Usuarios =  new List<RegistroUsersCap>(){
+                                new RegistroUsersCap { Name = "Shield" }
+                        } },
 
-                        new tUsuario(){ Name = "allies"},
-                        new tUsuario(){ Name = "teammates"},
-                        new tUsuario(){ Name = "saves"},
-                        new tUsuario(){ Name = "enemies"}
+                        new tUsuario(){ Name = "allies",
+                            Usuarios = new List<RegistroUsersCap>(){
+                                new RegistroUsersCap { Name = "Stephen Strange"},
+                                new RegistroUsersCap { Name = "Máquina de Guerra"}
+                            } },
+                        new tUsuario(){ Name = "teammates",
+                            Usuarios = new List<RegistroUsersCap>(){
+                                new RegistroUsersCap { Name = "Tony Stark"},
+                                new RegistroUsersCap { Name = "Bruce Banner"},
+                                new RegistroUsersCap { Name = "Thor"}
+                            }
+                        },
+                        new tUsuario(){ Name = "saves",
+                            Usuarios = new List<RegistroUsersCap>() {
+                                new RegistroUsersCap { Name = "Rick Jones"}
+                            }
+                        },
+                        new tUsuario(){ Name = "enemies",
+                            Usuarios = new List<RegistroUsersCap>(){
+                                new RegistroUsersCap { Name = "Barón Zemo"},
+                                new RegistroUsersCap { Name = "Hydra"},
+                                new RegistroUsersCap { Name = "Thanos"}
+                            }
+                        }
                     }
                     );
                 Context.SaveChanges();

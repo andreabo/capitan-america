@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace WebApiCap.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [AllowAnonymous]
+    [EnableCors("AllowMyOrigin")]
     public class RegistroUsuariosController : ControllerBase
     {
         public readonly ApplicationDbContext Context;
@@ -27,7 +27,7 @@ namespace WebApiCap.Controllers
         [HttpGet("{id}", Name = "UsuarioCreado")]
         public IActionResult GetById(int Id)
         {
-            var Usuario = Context.RegistroUsersCap.FirstOrDefault(x => x.Id == Id);
+            var Usuario = Context.RegistroUsersCap.Include(x => x.tUsuario).FirstOrDefault(x => x.Id == Id);
             if (Usuario == null)
             {
                 return NotFound();
