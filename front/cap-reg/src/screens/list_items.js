@@ -82,11 +82,14 @@ class ListItem extends Component {
     if (!item.fechaHora) {
       return null;
     }
+
+    let date = new Date(item.fechaHora);
+    date.setDate(date.getDate() + 1);
     return (
       <Container>
         <br />
         <span className="date-text">
-          <i className="fa fa-history"></i> {moment().format('MMMM Do YYYY, h:mm:ss a', item.fechaHora)}
+          <i className="fa fa-history"></i> {moment(date).format('MMMM Do YYYY')}
         </span>
       </Container>
     );
