@@ -11,6 +11,7 @@ class ListItem extends Component {
   }
 
   componentDidMount() {
+    /*
     const that = this;
     const url = `${api.url}${this.props.match.params.list}`;
     const config = {
@@ -20,12 +21,33 @@ class ListItem extends Component {
     };
     axios.get(url, config)
       .then(function (response) {
-        console.log(response.data);
         that.setState({ data: response.data });
       })
       .catch(function (error) {
-        console.log(error);
       })
+      */
+    this.setState({
+      data: [{
+        "id": 10,
+        "name": "algo",
+        "tpersona": "patrocinador"
+      },
+      {
+        "id": 11,
+        "name": "algo",
+        "tpersona": "patrocinador"
+      },
+      {
+        "id": 12,
+        "name": "algo",
+        "tpersona": "patrocinador"
+      },
+      {
+        "id": 13,
+        "name": "algo",
+        "tpersona": "patrocinador"
+      }]
+    })
   }
 
   confirmDelete = (Id) => {
@@ -33,7 +55,6 @@ class ListItem extends Component {
       console.log('PANCHO', Id);
       axios.delete(`${api.url}${this.props.match.params.list}/${Id}`, {})
         .then(function (response) {
-          console.log(response);
           window.location.reload();
         })
         .catch(function (error) {
@@ -47,16 +68,14 @@ class ListItem extends Component {
       <li className='item-list__item' key={item.id.toString()}>
         {item.name}
         <button className='item-list__item__delete-button' onClick={(id) => this.confirmDelete(item.id)}>
-          Delete
-                </button>
+          <i className="fa fa-times-circle"></i>
+        </button>
       </li>
     );
 
     return (
       <div>
-        <h1>
-          Listing all {this.props.match.params.list}
-        </h1>
+        <h1>Listing all {this.props.match.params.list}</h1>
         <div className='buttons-grp'>
           <div className='button'>
             <Link to={'/'}><i className="fa fa-plane fa-rotate-180" /> Back Home</Link>
@@ -66,6 +85,10 @@ class ListItem extends Component {
           </div>
         </div>
         <ul className='item-list'>
+          <li className='item-list__header'>
+            <span>{this.props.match.params.list}</span>
+            <span>Delete</span>
+          </li>
           {listItems}
         </ul>
       </div>

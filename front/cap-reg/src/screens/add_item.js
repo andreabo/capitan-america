@@ -31,19 +31,19 @@ class AddItem extends Component {
 
   render() {
     return (
-      <div className='page-container'>
+      <div>
         <h1>
           Adding {this.props.match.params.item} Cap?
         </h1>
         <div>
           <div className='buttons-grp'>
             <div className='button'>
-              <Link to={`/list/${this.props.match.params.item}`}>Back to {this.props.match.params.item}</Link>
+              <Link to={`/list/${this.props.match.params.item}`}><i className="fa fa-plane fa-rotate-180" /> Back to {this.props.match.params.item}</Link>
             </div>
           </div>
           <form className='add-item-form' onSubmit={this.handleSubmit}>
             <label>
-              <input type="text" value={this.state.value} placeholder={' NAME'} onChange={this.handleChange} className='input' />
+              <input type="text" value={this.state.value} placeholder={`Add a new ${this.props.match.params.item}`} onChange={this.handleChange} className='input' />
             </label>
             <input type="submit" value="Submit" className='button submit' />
           </form>
