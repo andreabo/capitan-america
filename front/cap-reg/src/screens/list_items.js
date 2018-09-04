@@ -29,7 +29,7 @@ class ListItem extends Component {
 
   fetchData = () => {
     const that = this;
-    const url = `${api.url}${this.props.match.params.list}`;
+    const url = this.getFetchUrl(); // `${api.url}${this.props.match.params.list}`;
     const config = {
       headers: {
         'Access-Control-Allow-Origin': '*',
@@ -42,6 +42,28 @@ class ListItem extends Component {
       return null;
     });
   }
+
+  getFetchUrl = () => {
+    const list = this.props.match.params.list;
+    if (list === 'mision') {
+      return `${api.url}${this.props.match.params.list}`;
+    }
+    let user = 0;
+    switch (list) {
+      case 'sponsors':
+        user = 1; break;
+      case 'allies':
+        user = 2; break;
+      case 'teammates':
+        user = 3; break;
+      case 'saves':
+        user = 4; break;
+      case 'enemies':
+        user = 5; break;
+    }
+    return `${api.url}tusuario/${user}`;
+  }
+
 
   confirmDelete = (Id) => {
     if (window.confirm('Are you sure you wish to delete this item?')) {
