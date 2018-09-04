@@ -2,12 +2,10 @@
 
 namespace WebApiCap.Models
 {
-    public class RegistroUsersCap
+    public class tUsuario
     {
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
-        public string Tpersona { get; set; }
     }
 }

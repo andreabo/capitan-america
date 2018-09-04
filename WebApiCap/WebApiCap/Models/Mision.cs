@@ -9,6 +9,6 @@ namespace WebApiCap.Models
         [Required]
         public DateTime FechaHora { get; set; }
         [Required]
-        public string Nombre { get; set; }
+        public string Name { get; set; }
     }
 }

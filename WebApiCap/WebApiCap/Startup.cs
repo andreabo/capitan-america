@@ -49,9 +49,9 @@ namespace WebApiCap
                 Context.Mision.AddRange(
                     new List<Mision>()
                     {
-                        new Mision(){ FechaHora = Convert.ToDateTime("2025/08/06") , Nombre = "Levantar el martillo de Thor."},
-                        new Mision(){ FechaHora = Convert.ToDateTime("2029/08/11") , Nombre = "Derrotar a Hydra."},
-                        new Mision(){ FechaHora = DateTime.Now , Nombre = "Cumpleaños de Tony." }
+                        new Mision(){ FechaHora = Convert.ToDateTime("2025/08/06") , Name = "Levantar el martillo de Thor."},
+                        new Mision(){ FechaHora = Convert.ToDateTime("2029/08/11") , Name = "Derrotar a Hydra."},
+                        new Mision(){ FechaHora = DateTime.Now , Name = "Cumpleaños de Tony." }
                     }
                     );
                 Context.SaveChanges();
@@ -62,9 +62,25 @@ namespace WebApiCap
                 Context.RegistroUsersCap.AddRange(
                     new List<RegistroUsersCap>()
                     {
-                        new RegistroUsersCap(){ Nombre = "Tonny Stark", Tpersona = "patrocinador"},
-                        new RegistroUsersCap(){ Nombre = "Rick Jones", Tpersona = "personas salvadas"},
-                        new RegistroUsersCap(){ Nombre = "Barón Zemo", Tpersona = "enemigos" }
+                        new RegistroUsersCap(){ Name = "Tonny Stark", Tpersona = "teammates"},
+                        new RegistroUsersCap(){ Name = "Rick Jones", Tpersona = "saves"},
+                        new RegistroUsersCap(){ Name = "Barón Zemo", Tpersona = "enemies" }
+                    }
+                    );
+                Context.SaveChanges();
+            }
+
+            if (!Context.tUsuario.Any())
+            {
+                Context.tUsuario.AddRange(
+                    new List<tUsuario>()
+                    {
+                        new tUsuario(){ Name = "sponsors"},
+
+                        new tUsuario(){ Name = "allies"},
+                        new tUsuario(){ Name = "teammates"},
+                        new tUsuario(){ Name = "saves"},
+                        new tUsuario(){ Name = "enemies"}
                     }
                     );
                 Context.SaveChanges();
