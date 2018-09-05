@@ -44,10 +44,18 @@ class ListItem extends Component {
   }
 
   getFetchUrl = () => {
-    const list = this.props.match.params.list;
-    if (list === 'mision') {
+    if (this.isMissionScreen()) {
       return `${api.url}${this.props.match.params.list}`;
     }
+    return `${api.url}tusuario/${this.getUser()}`;
+  }
+
+  isMissionScreen = () => {
+    return this.props.match.params.list === 'mision';
+  };
+
+  getUser = () => {
+    const list = this.props.match.params.list;
     let user = 0;
     switch (list) {
       case 'sponsors':
@@ -61,14 +69,20 @@ class ListItem extends Component {
       case 'enemies':
         user = 5; break;
     }
-    return `${api.url}tusuario/${user}`;
-  }
-
+    return user;
+  };
 
   confirmDelete = (Id) => {
-    if (window.confirm('Are you sure you wish to delete this item?')) {
-      console.log('PANCHO', Id);
-      axios.delete(`${api.url}${this.props.match.params.list}/${Id}`, {})
+    if (window.confirm('Are you sure you want to delete this item?')) {
+
+      let url = '';
+      if (this.isMissionScreen()) {
+        url = `${api.url}${this.props.match.params.list}/${Id}`;
+      } else {
+        url = `${api.url}RegistroUsuarios/${Id}`;
+      }
+
+      axios.delete(url, {})
         .then(function (response) {
           window.location.reload();
         })
